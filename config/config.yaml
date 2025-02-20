@@ -1,0 +1,24 @@
+# General configuration
+data:
+  batch_size: 32
+  train_ratio: 0.8
+  random_seed: 42
+  data_dir: "data/"
+
+training:
+  num_epochs: 10
+  learning_rate: 0.001
+  device: "cuda"
+  save_model: true
+  model_dir: "models/saved/"
+
+logging:
+  log_interval: 100
+  tensorboard: true
+  log_dir: "logs/"
+
+evaluation:
+  metrics:
+    - accuracy
+    - f1_score
+    - confusion_matrix
