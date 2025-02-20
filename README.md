@@ -38,24 +38,27 @@ This project implements three different classification models for the MNIST data
 ## Requirements
 
 ```bash
-pytorch==2.1.0
-torchvision==0.16.0
-scikit-learn==1.3.0
-numpy==1.24.3
+Python==3.10.8
+matplotlib==3.9.1
+numpy==1.26.4
+scikit_learn==1.6.1
+seaborn==0.13.2
+torch==2.3.1
+torchvision==0.18.1
 ```
 
 ## Installation
 
-1. Create a new conda environment:
+1. Create a virtual environment and activate it:
 ```bash
-conda create -n ml_env python=3.8
-conda activate ml_env
+python -m venv ml_env
+source ml_env/bin/activate  # For Linux/Mac
+ml_env\Scripts\activate  # For Windows
 ```
 
 2. Install required packages:
 ```bash
-conda install pytorch torchvision -c pytorch
-conda install scikit-learn numpy
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -122,6 +125,7 @@ Typical performance metrics on MNIST test set:
 
 Feel free to submit issues and enhancement requests!
 
-## License
+## Note
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This is a test assignment for further learning purposes.
+

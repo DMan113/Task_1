@@ -3,7 +3,21 @@ from torch.utils.data import DataLoader
 
 
 class MnistDataset:
+    """
+    A class for handling the MNIST dataset with preprocessing and DataLoader setup.
+
+    Attributes:
+        batch_size (int): The number of samples per batch.
+        transform (transforms.Compose): Transformations applied to the dataset.
+    """
+
     def __init__(self, batch_size=32):
+        """
+        Initializes the MnistDataset with the given batch size and transformation.
+
+        Args:
+            batch_size (int, optional): Number of samples per batch. Default is 32.
+        """
         self.batch_size = batch_size
         self.transform = transforms.Compose([
             transforms.ToTensor(),
@@ -11,7 +25,12 @@ class MnistDataset:
         ])
 
     def get_data_loaders(self):
-        """Return train and test data loaders"""
+        """
+        Loads and returns the training and test data loaders for the MNIST dataset.
+
+        Returns:
+            tuple: (train_loader, test_loader), where each is a DataLoader for the dataset.
+        """
         train_dataset = datasets.MNIST('../data',
                                        train=True,
                                        download=True,

@@ -4,8 +4,17 @@ from models.random_forest import RandomForestMnist
 
 
 class MnistClassifier:
+    """
+    A classifier for MNIST dataset supporting multiple algorithms: CNN, Feed-Forward NN, and Random Forest.
+    """
+
     def __init__(self, algorithm='cnn'):
-        """Выбор алгоритма: 'cnn', 'rf', 'nn'"""
+        """
+        Initializes the classifier with the specified algorithm.
+
+        :param algorithm: The algorithm to use ('cnn', 'rf', 'nn').
+        :raises ValueError: If the specified algorithm is not supported.
+        """
         if algorithm == 'cnn':
             self.classifier = ConvNetMnist()
         elif algorithm == 'rf':
@@ -16,7 +25,13 @@ class MnistClassifier:
             raise ValueError("Algorithm must be one of: 'cnn', 'rf', 'nn'")
 
     def train(self, train_loader, epochs=5):
-        """Model training"""
+        """
+        Trains the classifier on the given dataset.
+
+        :param train_loader: DataLoader for the training dataset.
+        :param epochs: Number of epochs to train.
+        :return: The final training loss.
+        """
         epoch_losses = []
         for epoch in range(epochs):
             running_loss = 0.0
@@ -37,7 +52,7 @@ class MnistClassifier:
                 avg_loss = running_loss / batches
                 print(f'Epoch {epoch + 1}, Loss: {avg_loss:.4f}')
                 epoch_losses.append(avg_loss)
-            else:  # для Random Forest
+            else:  # For Random Forest
                 self.classifier.train(train_loader)
                 print(f'Epoch {epoch + 1}, Training completed')
                 epoch_losses.append(0.0)
@@ -45,11 +60,21 @@ class MnistClassifier:
         return epoch_losses[-1] if epoch_losses else 0.0
 
     def predict(self, test_loader):
-        """Prediction on test Dataset"""
+        """
+        Predicts labels for the given test dataset.
+
+        :param test_loader: DataLoader for the test dataset.
+        :return: Predicted labels.
+        """
         return self.classifier.predict(test_loader)
 
     def evaluate(self, test_loader):
-        """Assessment of the accuracy of the model"""
+        """
+        Evaluates the accuracy of the classifier on the test dataset.
+
+        :param test_loader: DataLoader for the test dataset.
+        :return: Accuracy as a percentage.
+        """
         self.classifier.model.eval() if hasattr(self.classifier.model, 'eval') else None
         correct = 0
         total = 0

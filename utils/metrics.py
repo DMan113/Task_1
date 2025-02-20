@@ -3,17 +3,20 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 
 class ClassificationMetrics:
+    """
+    A utility class for evaluating classification performance using standard metrics.
+    """
     @staticmethod
     def calculate_metrics(y_true, y_pred):
         """
-        Calculate precision, recall, and F1-score for each class
+        Calculate precision, recall, and F1-score for each class.
 
         Args:
-            y_true: Ground truth labels
-            y_pred: Predicted labels
+            y_true (array-like): Ground truth labels.
+            y_pred (array-like): Predicted labels.
 
         Returns:
-            Dictionary containing various metrics
+            dict: A dictionary containing per-class and average metrics, along with the confusion matrix.
         """
         precision, recall, f1, _ = precision_recall_fscore_support(y_true, y_pred, average=None)
 
@@ -40,7 +43,12 @@ class ClassificationMetrics:
 
     @staticmethod
     def print_metrics(metrics):
-        """Pretty print the metrics"""
+        """
+        Print classification metrics in a readable format.
+
+        Args:
+            metrics (dict): A dictionary containing classification metrics.
+        """
         print("\n=== Classification Metrics ===")
         print("\nPer-class metrics:")
         for class_metric in metrics['per_class_metrics']:
